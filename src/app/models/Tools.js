@@ -1,4 +1,4 @@
-import mongo from "../../database";
+import mongo from '../../database'
 
 const tag = {
   type: String,
@@ -21,6 +21,6 @@ const ToolSchema = new mongo.Schema({
   tags: [tag]
 })
 
-const Tool = mongo.model("Tool", ToolSchema)
+const Tool = mongo.model('Tool', ToolSchema)
 
 export default Tool
