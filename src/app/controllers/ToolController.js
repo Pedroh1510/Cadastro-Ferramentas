@@ -14,6 +14,19 @@ export default {
       res.status(500).send({ message: 'Erro' })
     }
   },
+  async show (req, res) {
+    try {
+      const tag = req.query.tag
+
+      const tools = await Tool.find({ tags: tag })
+
+      res.status(200).send(tools)
+    } catch (err) {
+      console.log(err)
+
+      res.status(500).send({ message: 'Erro' })
+    }
+  },
   async store (req, res) {
     try {
       const { title, link, description, tags } = req.body
