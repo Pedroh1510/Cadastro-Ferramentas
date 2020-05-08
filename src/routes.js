@@ -8,6 +8,6 @@ const routes = Router()
 routes.get('/tools?', ToolController.show)
 routes.get('/tools', ToolController.index)
 routes.post('/tools', ToolValidator.store, ToolController.store)
-routes.delete('/tools/:id')
+routes.delete('/tools/:id', ToolController.destroy)
 
 export default routes

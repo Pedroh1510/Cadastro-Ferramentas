@@ -39,5 +39,16 @@ export default {
     } catch (err) {
       res.status(500).send({ message: 'Erro' })
     }
+  },
+  async destroy (req, res) {
+    try {
+      const id = req.params.id
+
+      await Tool.findByIdAndRemove(id)
+
+      res.status(204).send()
+    } catch (err) {
+      res.status(500).send({ message: 'Erro' })
+    }
   }
 }
