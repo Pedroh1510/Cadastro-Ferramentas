@@ -2,11 +2,12 @@ const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
   MONGO_PORT,
-  MONGO_DB
+  MONGO_DB,
+  MONGO_HOSTNAME
 } = process.env
 
 export default {
-  url: `mongodb://localhost:${MONGO_PORT}/${MONGO_DB}`,
+  url: `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`,
   options: {
     auth: { authSource: 'admin' },
     user: MONGO_USERNAME,

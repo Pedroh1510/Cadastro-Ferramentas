@@ -6,8 +6,8 @@
   "scripts": {
     "commit": "git add . && git commit",
     "dev": "nodemon --exec sucrase-node src/index.js",
-    "build": "sucrase ./src -d ./dist",
-    "start": "node dist/index.js"
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "yarn build && node dist/index.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
