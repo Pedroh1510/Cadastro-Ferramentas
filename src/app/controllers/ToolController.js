@@ -14,17 +14,17 @@ export default {
       res.status(500).send({ message: 'Erro' })
     }
   },
-  async show (req, res) {
+  async show (req, res, next) {
     try {
+      if (!req.query.tag) return next()
+
       const tag = req.query.tag
 
       const tools = await Tool.find({ tags: tag })
 
-      res.status(200).send(tools)
+      return res.status(200).send(tools)
     } catch (err) {
-      console.log(err)
-
-      res.status(500).send({ message: 'Erro' })
+      return res.status(500).send({ message: 'Erro' })
     }
   },
   async store (req, res) {
