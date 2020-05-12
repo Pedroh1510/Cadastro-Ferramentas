@@ -1,5 +1,7 @@
 # Cadastro de ferramentas
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/79ab9d06865346539cc75d0ddf02b047)](https://app.codacy.com/manual/Pedroh1510/Cadastro-Ferramentas?utm_source=github.com&utm_medium=referral&utm_content=Pedroh1510/Cadastro-Ferramentas&utm_campaign=Badge_Grade_Dashboard)
+
 <p align="justify">Projeto proposto pela plataforma [Bossbox](https://bossabox.com/para-profissionais), com o intuito de saber um pouco de como programo. Uma API de cadastro e consulta de ferramentas</p>
 
 ## Começando
