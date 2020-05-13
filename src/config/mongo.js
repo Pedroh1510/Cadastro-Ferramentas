@@ -6,8 +6,10 @@ const {
   MONGO_HOSTNAME
 } = process.env
 
+const host = process.env.NODE_ENV === 'test' ? 'localhost' : MONGO_HOSTNAME
+
 export default {
-  url: `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`,
+  url: `mongodb://${host}:${MONGO_PORT}/${MONGO_DB}`,
   options: {
     auth: { authSource: 'admin' },
     user: MONGO_USERNAME,
