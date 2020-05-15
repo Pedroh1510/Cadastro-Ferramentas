@@ -8,7 +8,7 @@
     "dev": "nodemon --exec sucrase-node src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "yarn build && node dist/server.js",
-    "test": "jest --watch --colors"
+    "test": "jest --watch --colors --silent --noStackTrace"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
