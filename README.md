@@ -1,6 +1,7 @@
 # Cadastro de ferramentas
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/79ab9d06865346539cc75d0ddf02b047)](https://app.codacy.com/manual/Pedroh1510/Cadastro-Ferramentas?utm_source=github.com&utm_medium=referral&utm_content=Pedroh1510/Cadastro-Ferramentas&utm_campaign=Badge_Grade_Dashboard)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 <p align="justify">Projeto proposto pela plataforma [Bossbox](https://bossabox.com/para-profissionais), com o intuito de saber um pouco de como programo. Uma API de cadastro e consulta de ferramentas</p>
 
@@ -27,3 +28,6 @@ docker-compose up -d
 
 Agora acesse [localhost:3000](localhost:3000), recomendo que utilize o insominia para acessar as rotas desta aplicação
 
+##Autor
+* GitHub: [Pedroh1510](https://github.com/Pedroh1510)
+* Linkein: [Pedroh1510](www.linkedin.com/in/pedroh1510)
