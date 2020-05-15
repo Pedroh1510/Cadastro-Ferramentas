@@ -96,4 +96,16 @@ describe('Verifica ToolController', () => {
       expect(response.status).toEqual(204)
     })
   })
+  describe('Verifica a rota get /tools?tag, com query', () => {
+    test('Deve retorna uma lista com as ferramentas com a tag', async () => {
+      const tag = 'node'
+      await request(app).post('/tools').send(toolRegister)
+
+      const response = await request(app).get(`/tools?tag=${tag}`).send()
+
+      expect(Array.isArray(response.body)).toEqual(true)
+      expect(Array.isArray(response.body[0].tags)).toEqual(true)
+      expect(response.body[0].tags).toEqual(expect.arrayContaining([tag]))
+    })
+  })
 })
