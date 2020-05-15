@@ -1,5 +1,5 @@
 # Cadastro de ferramentas
-
+[![Build Status](https://travis-ci.org/Pedroh1510/Cadastro-Ferramentas.svg?branch=master)](https://travis-ci.org/Pedroh1510/Cadastro-Ferramentas)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/79ab9d06865346539cc75d0ddf02b047)](https://app.codacy.com/manual/Pedroh1510/Cadastro-Ferramentas?utm_source=github.com&utm_medium=referral&utm_content=Pedroh1510/Cadastro-Ferramentas&utm_campaign=Badge_Grade_Dashboard)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
