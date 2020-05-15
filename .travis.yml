@@ -15,3 +15,5 @@ script:
   - yarn build
   - yarn test
   - yarn test:ci
+after_script:
+  - cat ./coverage/lcov.info | coveralls
