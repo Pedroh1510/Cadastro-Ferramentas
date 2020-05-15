@@ -86,4 +86,14 @@ describe('Verifica ToolController', () => {
       expect(response.body.message).toEqual('"tags" must be an array')
     })
   })
+  describe('Verifica a rota delete /tools/:id', () => {
+    test('Deve retornar Status: 204 No Content', async () => {
+      const content = await request(app).post('/tools').send(toolRegister)
+      const id = content.body._id
+      const rota = `/tools/${id}`
+      const response = await request(app).delete(rota).send()
+
+      expect(response.status).toEqual(204)
+    })
+  })
 })
