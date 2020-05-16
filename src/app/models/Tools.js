@@ -2,23 +2,23 @@ import mongo from '../../database'
 
 const tag = {
   type: String,
-  required: true
+  required: true,
 }
 
 const ToolSchema = new mongo.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   link: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
-  tags: [tag]
+  tags: [tag],
 })
 
 const Tool = mongo.model('Tool', ToolSchema)

@@ -6,7 +6,7 @@ export default {
       title: Joi.string().required(),
       link: Joi.string().uri().required(),
       description: Joi.string().required(),
-      tags: Joi.array().required()
-    })
-  })
+      tags: Joi.array().required(),
+    }),
+  }),
 }

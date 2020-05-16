@@ -3,7 +3,7 @@ const {
   MONGO_PASSWORD,
   MONGO_PORT,
   MONGO_DB,
-  MONGO_HOSTNAME
+  MONGO_HOSTNAME,
 } = process.env
 
 const host = process.env.NODE_ENV === 'test' ? 'localhost' : MONGO_HOSTNAME
@@ -17,6 +17,6 @@ export default {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
-  }
+    useFindAndModify: false,
+  },
 }

@@ -1,11 +1,11 @@
 import Tool from '../models/Tools'
 
 export default {
-  async index (req, res) {
+  async index(req, res) {
     try {
       const tools = await Tool.find()
 
-      tools.map(tool => {
+      tools.map((tool) => {
         tool.__v = undefined
       })
 
@@ -14,7 +14,7 @@ export default {
       res.status(500).send({ message: 'Erro' })
     }
   },
-  async show (req, res, next) {
+  async show(req, res, next) {
     try {
       if (!req.query.tag) return next()
 
@@ -27,7 +27,7 @@ export default {
       return res.status(500).send({ message: 'Erro' })
     }
   },
-  async store (req, res) {
+  async store(req, res) {
     try {
       const { title, link, description, tags } = req.body
 
@@ -40,7 +40,7 @@ export default {
       res.status(500).send({ message: 'Erro' })
     }
   },
-  async destroy (req, res) {
+  async destroy(req, res) {
     try {
       const id = req.params.id
 
@@ -50,5 +50,5 @@ export default {
     } catch (err) {
       res.status(500).send({ message: 'Erro' })
     }
-  }
+  },
 }
