@@ -5,7 +5,8 @@
   },
   "extends": [
     "standard",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -15,22 +16,15 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "eslint-plugin-import-helpers"
-  ],
+  "plugins": ["eslint-plugin-import-helpers", "prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "import-helpers/order-imports": [
       "warn",
-      { // example configuration
+      {
+        // example configuration
         "newlinesBetween": "always",
-        "groups": [
-          "module",
-          [
-            "parent",
-            "sibling",
-            "index"
-          ]
-        ],
+        "groups": ["module", ["parent", "sibling", "index"]],
         "alphabetize": {
           "order": "asc",
           "ignoreCase": true
