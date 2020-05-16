@@ -1,1 +1,1 @@
-web: docker-compose up -d
+web:web: yarn start
