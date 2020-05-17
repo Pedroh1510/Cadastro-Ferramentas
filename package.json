@@ -10,7 +10,8 @@
     "commit": "git add . && git commit",
     "dev": "nodemon --exec sucrase-node src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
-    "start": "yarn build && node dist/server.js",
+    "start": "node dist/server.js",
+    "start:build": "yarn build && node dist/server.js",
     "test": "jest --colors --silent --detectOpenHandles --forceExit",
     "test:watch": "yarn test --watch --noStackTrace",
     "test:ci": "yarn test --noStackTrace --coverage"
