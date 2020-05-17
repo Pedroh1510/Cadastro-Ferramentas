@@ -4,12 +4,13 @@ const {
   MONGO_PORT,
   MONGO_DB,
   MONGO_HOSTNAME,
+  MONGO_URL,
 } = process.env
 
 const host = process.env.NODE_ENV === 'test' ? 'localhost' : MONGO_HOSTNAME
-const url = process.env.DOCKER
-  ? `mongodb://${host}:${MONGO_PORT}/${MONGO_DB}`
-  : `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@savedbot-6tes2.mongodb.net/${MONGO_DB}?retryWrites=true&w=majority`
+const url = process.env.MONGO_URL
+  ? MONGO_URL
+  : `mongodb://${host}:${MONGO_PORT}/${MONGO_DB}`
 
 export default {
   url,
