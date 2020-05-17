@@ -12,7 +12,7 @@
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js",
     "start:build": "yarn build && node dist/server.js",
-    "test": "jest --colors --forceExit",
+    "test": "jest --colors --detectOpenHandles --forceExit",
     "test:watch": "yarn test --watch --noStackTrace",
     "test:ci": "yarn test --silent --noStackTrace --coverage"
   },
