@@ -12,9 +12,9 @@
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js",
     "start:build": "yarn build && node dist/server.js",
-    "test": "jest --colors --silent --detectOpenHandles --forceExit",
+    "test": "jest --colors --forceExit",
     "test:watch": "yarn test --watch --noStackTrace",
-    "test:ci": "yarn test --noStackTrace --coverage"
+    "test:ci": "yarn test --silent --noStackTrace --coverage"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

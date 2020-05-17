@@ -1,3 +1,4 @@
+import './dotenv'
 const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
