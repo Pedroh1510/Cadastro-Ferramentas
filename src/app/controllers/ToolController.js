@@ -1,6 +1,6 @@
 import Tool from '../models/Tools'
 
-export default {
+class ToolController {
   async index(req, res) {
     try {
       const tools = await Tool.find()
@@ -13,7 +13,8 @@ export default {
     } catch (err) {
       res.status(500).send({ message: 'Erro' })
     }
-  },
+  }
+
   async show(req, res, next) {
     try {
       if (!req.query.tag) return next()
@@ -26,7 +27,8 @@ export default {
     } catch (err) {
       return res.status(500).send({ message: 'Erro' })
     }
-  },
+  }
+
   async store(req, res) {
     try {
       const { title, link, description, tags } = req.body
@@ -39,7 +41,8 @@ export default {
     } catch (err) {
       res.status(500).send({ message: 'Erro' })
     }
-  },
+  }
+
   async destroy(req, res) {
     try {
       const id = req.params.id
@@ -50,5 +53,7 @@ export default {
     } catch (err) {
       res.status(500).send({ message: 'Erro' })
     }
-  },
+  }
 }
+
+export default new ToolController()

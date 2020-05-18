@@ -1,15 +1,36 @@
 import './config/dotenv'
 import { errors } from 'celebrate'
 import express from 'express'
+import mongo from 'mongoose'
 
+import mongoConfig from './config/mongo'
 import routes from './routes'
 
-const app = express()
+class App {
+  constructor() {
+    this.express = express()
 
-app.use(express.json())
+    this.middleware()
+    this.database()
+    this.routes()
+    this.celebrateErrors()
+  }
 
-app.use(routes)
+  middleware() {
+    this.express.use(express.json())
+  }
 
-app.use(errors())
+  database() {
+    mongo.connect(mongoConfig.url, mongoConfig.options)
+  }
 
-export default app
+  routes() {
+    this.express.use(routes)
+  }
+
+  celebrateErrors() {
+    this.express.use(errors())
+  }
+}
+
+export default new App().express
