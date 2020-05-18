@@ -1,4 +1,4 @@
-import mongo from '../../database'
+import mongo from 'mongoose'
 
 const tag = {
   type: String,
