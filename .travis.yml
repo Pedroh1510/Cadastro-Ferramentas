@@ -9,6 +9,8 @@ cache:
     - 'node_modules'
     - 'dist'
     - 'coverage'
+services:
+  - mongodb
 script:
   - yarn build
   - yarn test
