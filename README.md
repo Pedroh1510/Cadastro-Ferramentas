@@ -20,7 +20,7 @@ Para executar o projeto, será necessário instalar os seguintes programas:
 Para iniciar o desenvolvimento, é necessario clonar o projeto
 
 ```
-git clone
+git clone https://github.com/Pedroh1510/Cadastro-Ferramentas.git
 ```
 
 ### Executando com o docker:
