@@ -12,4 +12,8 @@ routes.get('/tools', ToolController.show, ToolController.index)
 routes.post('/tools', ToolValidator.store, ToolController.store)
 routes.delete('/tools/:id', ToolController.destroy)
 
+routes.get('/', function (req, res) {
+  res.redirect('/api-docs')
+})
+
 export default routes
