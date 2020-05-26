@@ -19,35 +19,35 @@ Para executar o projeto, será necessário instalar os seguintes programas:
 
 Para iniciar o desenvolvimento, é necessario clonar o projeto
 
-```
+```sh
 git clone https://github.com/Pedroh1510/Cadastro-Ferramentas.git
 ```
 
-### Executando com o docker:
+### Executando com o docker
 
 Modo desenvolvimento
 
-```
+```sh
 docker-compose -f docker-compose.dev.yml up -d
 ```
 
 Modo produção
 
-```
+```sh
 docker-compose up -d
 ```
 
-### Executando sem o docker:
+### Executando sem o docker
 
 Para instalar as dependencias
 
-```
+```sh
 yarn ou npm install
 ```
 
 Rodando o projeto no modo de produção
 
-```
+```sh
 yarn start ou npm start
 ```
 
