@@ -3,6 +3,7 @@ node_js:
   - 'lts/*'
 os:
   - linux
+  - windows
 cache:
   yarn: true
   directories:
