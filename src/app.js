@@ -1,5 +1,6 @@
 import './config/dotenv'
 import { errors } from 'celebrate'
+import cors from 'cors'
 import express from 'express'
 import mongo from 'mongoose'
 
@@ -17,6 +18,7 @@ class App {
   }
 
   middleware() {
+    this.express.use(cors())
     this.express.use(express.json())
   }
 
