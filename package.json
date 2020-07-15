@@ -8,7 +8,7 @@
     "lint:prettier": "prettier --write src/",
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "commit": "git add . && git commit",
-    "test": "jest --colors --noStackTrace",
+    "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:watch": "yarn test --watch",
     "test:ci": "yarn test --silent  --coverage"
   },
