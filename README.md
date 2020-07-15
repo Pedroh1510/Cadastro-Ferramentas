@@ -39,7 +39,7 @@ docker-compose up -d
 
 ### Executando sem o docker
 
-Para instalar as dependencias
+Para instalar as dependências
 
 ```sh
 yarn ou npm install
@@ -56,4 +56,4 @@ Agora acesse [localhost:3000](localhost:3000), recomendo que utilize o insominia
 ##Autor
 
 - GitHub: [Pedroh1510](https://github.com/Pedroh1510)
-- Linkein: [Pedroh1510](www.linkedin.com/in/pedroh1510)
+- LinkedIn: [Pedroh1510](www.linkedin.com/in/pedroh1510)

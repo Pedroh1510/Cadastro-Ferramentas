@@ -14,7 +14,9 @@
     "start:build": "yarn build && node dist/server.js",
     "test": "jest --colors --detectOpenHandles --forceExit",
     "test:watch": "yarn test --watch --noStackTrace",
-    "test:ci": "yarn test --silent --noStackTrace --coverage"
+    "test:ci": "yarn test --silent --noStackTrace docker-compose down --coverage",
+    "up": "yarn build && docker-compose up -d",
+    "down": "docker-compose down"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
