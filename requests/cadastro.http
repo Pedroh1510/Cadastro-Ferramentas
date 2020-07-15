@@ -1,0 +1,17 @@
+POST http://localhost:3000/tools HTTP/1.1
+content-type: application/json
+
+{
+    "title": "hotel",
+	"link": "https://github.com/typicode/hotel",
+	"description": "Local app manager. Start apps within your browser, developer tool with local .localhost domain and https out of the box.",
+	"tags": [
+		"node",
+		"organizing",
+		"webapps",
+		"domain",
+		"developer",
+		"https",
+		"proxy"
+	]
+}
