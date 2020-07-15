@@ -1,15 +1,6 @@
-import { Controller } from './../protocols/controller'
-import { HttpResponse } from './../protocols/http'
+import { IndexToolController } from './IndexToolController'
 
 const makeSut = () => {
-  class IndexToolController implements Controller {
-    async handle (): Promise<HttpResponse> {
-      return {
-        statusCode: 200,
-        body: {}
-      }
-    }
-  }
   const sut = new IndexToolController()
   return {
     sut
