@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'standard',
-    "plugin:jest/recommended",
+    'plugin:jest/recommended',
+    'plugin:@typescript-eslint/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -18,18 +19,18 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
-    "eslint-plugin-import-helpers"
+    'eslint-plugin-import-helpers'
   ],
   rules: {
-    "import-helpers/order-imports": [
-      "warn",
+    'import-helpers/order-imports': [
+      'warn',
       {
         // example configuration
-        "newlinesBetween": "always",
-        "groups": ["module", ["parent", "sibling", "index"]],
-        "alphabetize": {
-          "order": "asc",
-          "ignoreCase": true
+        newlinesBetween: 'always',
+        groups: ['module', ['parent', 'sibling', 'index']],
+        alphabetize: {
+          order: 'asc',
+          ignoreCase: true
         }
       }
     ]

@@ -1,21 +1,9 @@
-interface HttpRequest{
-  body?: any
-  headers?: any
-  params?: any
-  query?: any
-}
-interface HttpResponse{
-  statusCode:number
-  body?:any
-}
-
-interface Controller{
-  handle(httpRequest:HttpRequest):Promise<HttpResponse>
-}
+import { Controller } from './../protocols/controller'
+import { HttpResponse } from './../protocols/http'
 
 const makeSut = () => {
   class IndexToolController implements Controller {
-    async handle ():Promise<HttpResponse> {
+    async handle (): Promise<HttpResponse> {
       return {
         statusCode: 200,
         body: {}
@@ -33,6 +21,6 @@ describe('Index Tool Controller', () => {
     const { sut } = makeSut()
     const response = await sut.handle()
     expect(response.statusCode).toEqual(200)
-    expect(response.body).toEqual({})
+    expect(response.body).toEqual([])
   })
 })
