@@ -7,9 +7,10 @@ import { HttpRequest } from './../protocols/http'
 
 export class StoreToolController implements Controller {
   async handle (httpRequest:HttpRequest):Promise<HttpResponse> {
-    const { title, link, description } = httpRequest.body
+    const { title, link, description, tags } = httpRequest.body
     if (!title) return badRequest(new MissingParamsError('title'))
     if (!link) return badRequest(new MissingParamsError('link'))
     if (!description) return badRequest(new MissingParamsError('description'))
+    if (!tags) return badRequest(new MissingParamsError('tags'))
   }
 }

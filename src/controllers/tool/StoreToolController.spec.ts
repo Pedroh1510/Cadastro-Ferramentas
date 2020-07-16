@@ -56,4 +56,18 @@ describe('Store Tool Controller', () => {
     expect(response.statusCode).toEqual(400)
     expect(response.body.message).toEqual(new MissingParamsError('description'))
   })
+  test('Retorna 400 se tags não for enviado', async () => {
+    const { sut } = makeSut()
+    const { link, description, title } = makeRequest().body
+    const httpRequest = {
+      body: {
+        link,
+        description,
+        title
+      }
+    }
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(400)
+    expect(response.body.message).toEqual(new MissingParamsError('tags'))
+  })
 })
