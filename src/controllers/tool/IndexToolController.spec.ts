@@ -1,6 +1,6 @@
 import { IndexToolController } from './IndexToolController'
 import { IndexToolRepositorySpy } from './mocks/IndexToolRepositorySpy'
-import { throwError } from './mocks/ThrownError'
+import { throwError } from './mocks/ThrowError'
 
 const makeSut = () => {
   const indexToolRepository = new IndexToolRepositorySpy()
