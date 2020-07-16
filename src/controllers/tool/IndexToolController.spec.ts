@@ -1,30 +1,14 @@
-import faker from 'faker'
-
-import { IIndexToolRepository } from './../protocols/IIndexRepository'
 import { IndexToolController } from './IndexToolController'
+import { IndexToolRepositorySpy } from './mocks/IndexToolRepositorySpy'
+import { throwError } from './mocks/ThrownError'
 
 const makeSut = () => {
-  class IndexToolRepositorySpy implements IIndexToolRepository {
-    async get () {
-      return [{
-        id: faker.random.uuid(),
-        title: faker.random.words(5),
-        link: faker.internet.url(),
-        description: faker.random.words(20),
-        tags: faker.random.words(20).split(' ')
-      }]
-    }
-  }
   const indexToolRepository = new IndexToolRepositorySpy()
   const sut = new IndexToolController(indexToolRepository)
   return {
     sut,
     indexToolRepository
   }
-}
-
-const throwError = () => {
-  throw new Error()
 }
 
 describe('Index Tool Controller', () => {
