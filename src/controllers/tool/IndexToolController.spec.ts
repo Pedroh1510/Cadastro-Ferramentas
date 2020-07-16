@@ -32,7 +32,7 @@ describe('Index Tool Controller', () => {
     const { sut } = makeSut()
     const response = await sut.handle()
     expect(response.statusCode).toEqual(200)
-    expect(response.body).toEqual([])
+    expect(Array.isArray(response.body)).toEqual(true)
   })
   test('Retorna 500 se o IndexToolRepository tiver uma exceção', async () => {
     const { sut, indexToolRepository } = makeSut()

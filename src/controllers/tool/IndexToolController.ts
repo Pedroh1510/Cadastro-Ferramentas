@@ -14,9 +14,9 @@ export class IndexToolController implements Controller {
       const tools = await this.indexToolRepository.get()
       return {
         statusCode: 200,
-        body: []
+        body: tools
       }
-    } catch (error) {
+    } catch (err) {
       return {
         statusCode: 500,
         body: 'Error'
