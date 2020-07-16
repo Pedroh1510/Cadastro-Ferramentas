@@ -1,6 +1,7 @@
 import { MissingParamsError } from './../../helpers/errors/MissingParamsError'
 import { fakerTool } from './../../utils/fakerTool'
 import { StoreToolRepositorySpy } from './mocks/StoreToolRepositorySpy'
+import { throwError } from './mocks/ThrowError'
 import { StoreToolController } from './StoreToolController'
 
 const makeRequest = () => ({
@@ -85,5 +86,12 @@ describe('Store Tool Controller', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(201)
     expect(response.body.id).toBeTruthy()
+  })
+  test('Retorna 500 se StoreToolRepository tiver uma exceção', async () => {
+    const { sut, storeToolRepositorySpy } = makeSut()
+    jest.spyOn(storeToolRepositorySpy, 'add').mockImplementationOnce(throwError)
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(500)
   })
 })
