@@ -7,5 +7,14 @@ export const ok = (data?:any):HttpResponse => ({
 
 export const serverError = ():HttpResponse => ({
   statusCode: 500,
-  body: 'Error'
+  body: {
+    message: 'Erro'
+  }
+})
+
+export const badRequest = (error:Error):HttpResponse => ({
+  statusCode: 400,
+  body: {
+    message: error
+  }
 })
