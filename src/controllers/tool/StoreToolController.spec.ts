@@ -11,7 +11,8 @@ const makeSut = () => {
   const storeToolRepositorySpy = new StoreToolRepositorySpy()
   const sut = new StoreToolController(storeToolRepositorySpy)
   return {
-    sut
+    sut,
+    storeToolRepositorySpy
   }
 }
 
@@ -72,7 +73,13 @@ describe('Store Tool Controller', () => {
     expect(response.statusCode).toEqual(400)
     expect(response.body.message).toEqual(new MissingParamsError('tags'))
   })
-  test('Retorna 201 e o id tool cadastrada', async () => {
+  test('Chama StoreToolRepository com o param correto', async () => {
+    const { sut, storeToolRepositorySpy } = makeSut()
+    const httpRequest = makeRequest()
+    await sut.handle(httpRequest)
+    expect(storeToolRepositorySpy.tool).toEqual(httpRequest.body)
+  })
+  test('Retorna 201 e o id da tool cadastrada', async () => {
     const { sut } = makeSut()
     const httpRequest = makeRequest()
     const response = await sut.handle(httpRequest)
