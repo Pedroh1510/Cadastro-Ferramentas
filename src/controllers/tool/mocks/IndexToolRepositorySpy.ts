@@ -1,16 +1,18 @@
 import { ILoadTool } from '@/models/Tool'
 import faker from 'faker'
 
+import { fakerTool } from './../../../utils/fakerTool'
 import { IIndexToolRepository } from './../../protocols/IIndexRepository'
 
 export class IndexToolRepositorySpy implements IIndexToolRepository {
   async get ():Promise<ILoadTool[]> {
+    const { title, link, description, tags } = fakerTool()
     return [{
       id: faker.random.uuid(),
-      title: faker.random.words(5),
-      link: faker.internet.url(),
-      description: faker.random.words(20),
-      tags: faker.random.words(20).split(' ')
+      title,
+      link,
+      description,
+      tags
     }]
   }
 }
