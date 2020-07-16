@@ -1,5 +1,6 @@
 import { MissingParamsError } from './../../helpers/errors/MissingParamsError'
 import { fakerTool } from './../../utils/fakerTool'
+import { StoreToolRepositorySpy } from './mocks/StoreToolRepositorySpy'
 import { StoreToolController } from './StoreToolController'
 
 const makeRequest = () => ({
@@ -7,7 +8,8 @@ const makeRequest = () => ({
 })
 
 const makeSut = () => {
-  const sut = new StoreToolController()
+  const storeToolRepositorySpy = new StoreToolRepositorySpy()
+  const sut = new StoreToolController(storeToolRepositorySpy)
   return {
     sut
   }
@@ -69,5 +71,12 @@ describe('Store Tool Controller', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(400)
     expect(response.body.message).toEqual(new MissingParamsError('tags'))
+  })
+  test('Retorna 201 e o id tool cadastrada', async () => {
+    const { sut } = makeSut()
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(201)
+    expect(response.body.id).toBeTruthy()
   })
 })
