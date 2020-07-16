@@ -1,7 +1,7 @@
 import { HttpResponse } from '@/controllers/protocols/http'
 
 import { MissingParamsError } from '../../helpers/errors/MissingParamsError'
-import { badRequest, serverError } from './../../helpers/http'
+import { badRequest, serverError, created } from './../../helpers/http'
 import { Controller } from './../protocols/controller'
 import { HttpRequest } from './../protocols/http'
 import { IStoreToolRepository } from './../protocols/IStoreRepository'
@@ -23,10 +23,7 @@ export class StoreToolController implements Controller {
 
       const { id } = await this.storeToolRepository.add({ title, link, description, tags })
 
-      return {
-        statusCode: 201,
-        body: { id }
-      }
+      return created({ id })
     } catch (error) {
       return serverError()
     }
