@@ -26,6 +26,7 @@ describe('Store Tool Controller', () => {
     }
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(400)
+    expect(response.body.message).toEqual(new MissingParamsError('title'))
   })
   test('Retorna 400 se link não for enviado', async () => {
     const { sut } = makeSut()
@@ -40,5 +41,19 @@ describe('Store Tool Controller', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(400)
     expect(response.body.message).toEqual(new MissingParamsError('link'))
+  })
+  test('Retorna 400 se description não for enviado', async () => {
+    const { sut } = makeSut()
+    const { link, tags, title } = makeRequest().body
+    const httpRequest = {
+      body: {
+        link,
+        tags,
+        title
+      }
+    }
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(400)
+    expect(response.body.message).toEqual(new MissingParamsError('description'))
   })
 })
