@@ -28,9 +28,6 @@ jobs:
     - name: Check tests
       run: yarn test:ci
 
-    - name: Check commit message
-      uses: wagoid/commitlint-github-action@v
-
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
