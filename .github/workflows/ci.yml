@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - name: Checkout repository
@@ -24,3 +27,11 @@ jobs:
     
     - name: Check tests
       run: yarn test:ci
+
+    - name: Check commit message
+      uses: wagoid/commitlint-github-action@v
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
