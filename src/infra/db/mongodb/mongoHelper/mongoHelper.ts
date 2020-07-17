@@ -21,6 +21,11 @@ class MongoHelper {
     const collection = this.client.db().collection(table)
     return collection
   }
+
+  map (data:any):any {
+    const { _id, ...rest } = data
+    return Object.assign({}, rest, { id: _id })
+  }
 }
 
 export const mongoHelper = new MongoHelper()
