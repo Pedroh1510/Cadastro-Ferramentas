@@ -1,4 +1,4 @@
-import { serverError } from './../../helpers/http'
+import { serverError, noContent } from './../../helpers/http'
 import { Controller } from './../protocols/controller'
 import { HttpRequest, HttpResponse } from './../protocols/http'
 import { IDestroyToolRepository } from './../protocols/IDestroyToolRepository'
@@ -13,9 +13,7 @@ export class DestroyToolController implements Controller {
     try {
       const { id } = httpRequest.params
       await this.destroyToolRepository.drop(id)
-      return {
-        statusCode: 204
-      }
+      return noContent()
     } catch (error) {
       return serverError()
     }
