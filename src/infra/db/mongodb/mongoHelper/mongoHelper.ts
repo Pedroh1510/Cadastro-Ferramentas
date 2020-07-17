@@ -1,0 +1,26 @@
+import { MongoClient, Collection } from 'mongodb'
+
+class MongoHelper {
+  private client:MongoClient
+  private uri:string
+  async connect (uri:string):Promise<void> {
+    this.uri = uri
+    this.client = await MongoClient.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+  }
+
+  async disconnect ():Promise<void> {
+    await this.client.close()
+    this.client = null
+  }
+
+  async getCollection (table:string):Promise<Collection> {
+    if (!this.client?.isConnected()) await this.connect(this.uri)
+    const collection = this.client.db().collection(table)
+    return collection
+  }
+}
+
+export const mongoHelper = new MongoHelper()
