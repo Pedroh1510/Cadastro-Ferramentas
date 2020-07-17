@@ -4,7 +4,9 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
-    "lint:eslint": "yarn eslint src/*.js --fix",
+    "build": "tsc -p tsconfig-build.json",
+    "start": "yarn build && node dist/main/server.js",
+    "lint:eslint": "yarn eslint src/*.ts --fix",
     "lint:prettier": "prettier --write src/",
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "commit": "git add . && git commit",
