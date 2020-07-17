@@ -11,13 +11,13 @@ Projeto proposto pela plataforma [Bossbox](https://bossabox.com/para-profissiona
 
 Para executar o projeto, será necessário instalar os seguintes programas:
 
-- [Node.js, necessario para execução do projeto](https://nodejs.org/en/)
+- [Node.js, necessário para execução do projeto](https://nodejs.org/en/)
 - [Yarn, para gerenciar pacotes de instalação](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable) (opcional)
 - [Docker, para a alocação local da aplicação](https://www.docker.com/products/docker-desktop)(opcional)
 
 ## Desenvolvimento
 
-Para iniciar o desenvolvimento, é necessario clonar o projeto
+Para iniciar o desenvolvimento, é necessário clonar o projeto
 
 ```sh
 git clone https://github.com/Pedroh1510/Cadastro-Ferramentas.git

@@ -1,14 +1,12 @@
 {
-  "name": "desafio-back-end",
+  "name": "cadastro-ferramentas",
   "version": "1.0.0",
-  "main": "src/server.js",
+  "main": "src/main/server.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig-build.json",
     "start": "yarn build && node dist/main/server.js",
-    "lint:eslint": "yarn eslint src/*.ts --fix",
-    "lint:prettier": "prettier --write src/",
-    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint": "yarn eslint src/*.ts --fix",
     "commit": "git add . && git commit",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:unit": "yarn test -- -c jest-unit.config.js",
