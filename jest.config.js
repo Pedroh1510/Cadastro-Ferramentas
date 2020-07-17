@@ -1,5 +1,8 @@
+const { defaults: tsjPreset } = require('ts-jest/presets')
 module.exports = {
-  preset: 'ts-jest',
+  preset: '@shelf/jest-mongodb',
+  // preset: 'ts-jest',
+  transform: tsjPreset.transform,
   testEnvironment: 'node',
   coverageDirectory: 'coverage',
   collectCoverageFrom: [

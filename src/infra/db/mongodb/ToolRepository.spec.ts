@@ -3,7 +3,6 @@ import { Collection } from 'mongodb'
 import { fakerTool } from './../../../utils/fakerTool'
 import { mongoHelper } from './mongoHelper/mongoHelper'
 import { ToolRepository } from './ToolRepository'
-import 'dotenv/config'
 
 let toolCollection:Collection
 
@@ -16,7 +15,7 @@ const makeSut = () => {
 
 describe('ToolRepository', () => {
   beforeAll(async () => {
-    await mongoHelper.connect(process.env.MONGO_URL_TEST)
+    await mongoHelper.connect(process.env.MONGO_URL)
   })
   afterAll(async () => {
     await mongoHelper.disconnect()

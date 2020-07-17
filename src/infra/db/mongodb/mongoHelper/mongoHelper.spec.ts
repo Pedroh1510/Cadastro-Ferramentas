@@ -1,9 +1,8 @@
 import { mongoHelper } from './mongoHelper'
-import 'dotenv/config'
 
 describe('Mongo Helper', () => {
   beforeAll(async () => {
-    await mongoHelper.connect(process.env.MONGO_URL_TEST)
+    await mongoHelper.connect(process.env.MONGO_URL)
   })
   afterAll(async () => {
     await mongoHelper.disconnect()
