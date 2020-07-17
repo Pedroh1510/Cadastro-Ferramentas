@@ -26,6 +26,14 @@ class MongoHelper {
     const { _id, ...rest } = data
     return Object.assign({}, rest, { id: _id })
   }
+
+  arrayMap (data:any):any {
+    const content = data.map(tool => {
+      const { _id, ...rest } = tool
+      return Object.assign({}, rest, { id: _id })
+    })
+    return content
+  }
 }
 
 export const mongoHelper = new MongoHelper()

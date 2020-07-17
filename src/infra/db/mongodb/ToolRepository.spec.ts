@@ -37,4 +37,18 @@ describe('ToolRepository', () => {
       expect(response.description).toEqual(tool.description)
     })
   })
+  describe('GetTool', () => {
+    test('Retorna todas as tools', async () => {
+      const { sut } = makeSut()
+      const tool = fakerTool()
+      await sut.add(tool)
+      const response = await sut.get()
+      expect(Array.isArray(response)).toBeTruthy()
+      expect(response[0].id).toBeTruthy()
+      expect(response[0].title).toEqual(tool.title)
+      expect(response[0].link).toEqual(tool.link)
+      expect(response[0].tags).toEqual(tool.tags)
+      expect(response[0].description).toEqual(tool.description)
+    })
+  })
 })
