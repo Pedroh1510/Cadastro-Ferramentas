@@ -1,5 +1,4 @@
-import { mongoHelper } from '@/infra/db/mongodb/mongoHelper/mongoHelper'
-
+import { mongoHelper } from '../infra/db/mongodb/mongoHelper/mongoHelper'
 import app from './config/app'
 import env from './config/env'
 
