@@ -51,4 +51,15 @@ describe('ToolRepository', () => {
       expect(response[0].description).toEqual(tool.description)
     })
   })
+  describe('DestroyTool', () => {
+    test('Deleta a Tool com o fornecido id', async () => {
+      const { sut } = makeSut()
+      const tool = fakerTool()
+      const { id } = await sut.add(tool)
+      await sut.drop(id)
+
+      const response = await sut.get()
+      expect(response).toEqual([])
+    })
+  })
 })
