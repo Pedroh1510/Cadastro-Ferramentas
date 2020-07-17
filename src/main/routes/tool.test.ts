@@ -50,4 +50,18 @@ describe('Tool Route', () => {
       expect(response.body.length).toEqual(1)
     })
   })
+  describe('POST /tools', () => {
+    test('Retorna 201 ao cadastrar a ferramenta', async () => {
+      const response = await request(app)
+        .post('/tools')
+        .send({
+          title: fakerTool().title,
+          description: fakerTool().description,
+          link: fakerTool().link,
+          tags: fakerTool().tags
+        })
+      expect(response.status).toEqual(201)
+      expect(response.body.id).toBeTruthy()
+    })
+  })
 })
