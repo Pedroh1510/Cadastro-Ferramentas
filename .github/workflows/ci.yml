@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node
-        uses: action/setup-node@v1
-        with:
-          node-version: '12.x'
-          
-      - name: Install dependencies
-        run: yarn
+    - name: Set up Node
+      uses: action/setup-node@v1
+      with:
+        node-version: '12.x'
 
-      - name: Check tests
-        run: yarn test:ci
+    - name: Install dependencies
+      run: yarn
+
+    - name: Check tests
+      run: yarn test:ci
