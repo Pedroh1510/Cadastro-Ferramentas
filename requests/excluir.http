@@ -1,0 +1,2 @@
+DELETE  http://localhost:3000/tools/:id HTTP/1.1
+# necessario preencher o ID
