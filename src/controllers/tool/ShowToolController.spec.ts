@@ -45,4 +45,12 @@ describe('ShowToolController', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(500)
   })
+  test('Retorna 200 e a lista de tool encontradas', async () => {
+    const { sut, showToolRepositorySpy } = makeSut()
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(200)
+    expect(Array.isArray(response.body)).toEqual(true)
+    expect(response.body).toEqual(showToolRepositorySpy.tools)
+  })
 })
