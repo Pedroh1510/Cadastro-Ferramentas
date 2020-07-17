@@ -1,25 +1,12 @@
-name: automerge on pull request
-on: [pull_request]
+name: Auto approve
+on: pull_request
 
 jobs:
-  automerge:
-    name: automerge dependabot
+  approve:
+    name: Auto-approve dependabot PRs
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
     steps:
-    - name: merge
-      uses: actions/github-script@0.2.0
+    - uses: hmarr/auto-approve-action@v2.0.0
       with:
-        script: |
-          github.pullRequests.createReview({
-            owner: context.payload.repository.owner.login,
-            repo: context.payload.repository.name,
-            pull_number: context.payload.pull_request.number,
-            event: 'APPROVE'
-          })
-          github.pullRequests.merge({
-            owner: context.payload.repository.owner.login,
-            repo: context.payload.repository.name,
-            pull_number: context.payload.pull_request.number
-          })
-        github-token: ${{github.token}}
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
