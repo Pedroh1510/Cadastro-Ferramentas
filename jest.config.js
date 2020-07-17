@@ -10,5 +10,5 @@ module.exports = {
     '!**/protocols/**',
     '!src/main/**'
   ],
-  coverageReporters: ['json', ['lcov', { projectRoot: '../../' }]]
+  coverageReporters: ['json', 'lcov']
 }
