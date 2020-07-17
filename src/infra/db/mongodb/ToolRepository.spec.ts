@@ -62,4 +62,12 @@ describe('ToolRepository', () => {
       expect(response).toEqual([])
     })
   })
+  describe('ShowTool', () => {
+    test('Retorna as tools com a tag informada', async () => {
+      const { sut } = makeSut()
+      const tool = await sut.add(fakerTool())
+      const response = await sut.filter(tool.tags[0])
+      expect(response[0]).toEqual(tool)
+    })
+  })
 })
