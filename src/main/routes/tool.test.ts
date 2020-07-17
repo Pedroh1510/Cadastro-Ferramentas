@@ -5,6 +5,7 @@ import { mongoHelper } from '../../infra/db/mongodb/mongoHelper/mongoHelper'
 import { fakerTool } from '../../utils/fakerTool'
 import app from '../config/app'
 import env from '../config/env'
+import { ToolRepository } from './../../infra/db/mongodb/ToolRepository'
 
 let toolCollection: Collection
 
@@ -35,9 +36,8 @@ describe('Tool Route', () => {
   })
   describe('GET /tools?tag=', () => {
     test('Retorna 200 e a lista de tools com a tag', async () => {
-      let tool = fakerTool()
-      await toolCollection.insertOne(tool)
-      tool = fakerTool()
+      const
+        tool = fakerTool()
       await toolCollection.insertOne(tool)
       const response = await request(app)
         .get(`/tools?tag=${tool.tags[0]}`)
@@ -62,6 +62,16 @@ describe('Tool Route', () => {
         })
       expect(response.status).toEqual(201)
       expect(response.body.id).toBeTruthy()
+    })
+  })
+  describe('DELETE /tools', () => {
+    test('Retorna 204 ao deletar a ferramenta', async () => {
+      const tool = fakerTool()
+      const repository = new ToolRepository()
+      const { id } = await repository.add(tool)
+      const response = await request(app)
+        .delete(`/tools/${id}`)
+      expect(response.status).toEqual(204)
     })
   })
 })
