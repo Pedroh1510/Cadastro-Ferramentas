@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p tsconfig-build.json",
     "start": "yarn build && node dist/main/server.js",
-    "lint": "yarn eslint src/*.ts --fix",
+    "lint": "yarn eslint src/**/*.ts --fix",
     "commit": "git add . && git commit",
     "test": "jest --passWithNoTests --noStackTrace --runInBand",
     "test:unit": "yarn test -- -c jest-unit.config.js",
