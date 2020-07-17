@@ -33,4 +33,10 @@ describe('DestroyToolController', () => {
     const response = await sut.handle(httpRequest)
     expect(response.statusCode).toEqual(500)
   })
+  test('Retorna 204 ao deletar a Tool informada', async () => {
+    const { sut } = makeSut()
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(204)
+  })
 })

@@ -14,7 +14,7 @@ export class DestroyToolController implements Controller {
       const { id } = httpRequest.params
       await this.destroyToolRepository.drop(id)
       return {
-        statusCode: 200
+        statusCode: 204
       }
     } catch (error) {
       return serverError()
