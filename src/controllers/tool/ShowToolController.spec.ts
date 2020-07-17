@@ -1,4 +1,5 @@
 import { ShowToolRepositorySpy } from './mocks/ShowToolRepositorySpy'
+import { throwError } from './mocks/ThrowError'
 import { ShowToolController } from './ShowToolController'
 
 const makeRequest = () => ({
@@ -36,5 +37,12 @@ describe('ShowToolController', () => {
     const httpRequest = makeRequest()
     await sut.handle(httpRequest)
     expect(showToolRepositorySpy.tag).toEqual(httpRequest.query.tag)
+  })
+  test('Retorna 500 se ShowToolRepository tiver uma exceção', async () => {
+    const { sut, showToolRepositorySpy } = makeSut()
+    jest.spyOn(showToolRepositorySpy, 'filter').mockImplementationOnce(throwError)
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(500)
   })
 })
