@@ -2,6 +2,7 @@ import faker from 'faker'
 
 import { DestroyToolController } from './DestroyToolController'
 import { DestroyToolRepositorySpy } from './mocks/DestroyToolRepositorySpy'
+import { throwError } from './mocks/ThrowError'
 
 const makeRequest = () => ({
   params: {
@@ -24,5 +25,12 @@ describe('DestroyToolController', () => {
     const httpRequest = makeRequest()
     await sut.handle(httpRequest)
     expect(destroyToolRepositorySpy.id).toEqual(httpRequest.params.id)
+  })
+  test('Retorna 500 se DestroyToolRepository tiver uma exceção', async () => {
+    const { sut, destroyToolRepositorySpy } = makeSut()
+    jest.spyOn(destroyToolRepositorySpy, 'drop').mockImplementationOnce(throwError)
+    const httpRequest = makeRequest()
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(500)
   })
 })
