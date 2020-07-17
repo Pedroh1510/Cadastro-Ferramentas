@@ -1,3 +1,4 @@
+import { MissingParamsError } from './../../helpers/errors/MissingParamsError'
 import { ShowToolRepositorySpy } from './mocks/ShowToolRepositorySpy'
 import { throwError } from './mocks/ThrowError'
 import { ShowToolController } from './ShowToolController'
@@ -7,30 +8,23 @@ const makeRequest = () => ({
 })
 
 const makeSut = () => {
-  class NextSpy {
-    set=0
-    next () {
-      this.set++
-    }
-  }
-  const next = new NextSpy()
   const showToolRepositorySpy = new ShowToolRepositorySpy()
-  const sut = new ShowToolController(showToolRepositorySpy, next)
+  const sut = new ShowToolController(showToolRepositorySpy)
   return {
     sut,
-    showToolRepositorySpy,
-    next
+    showToolRepositorySpy
   }
 }
 
 describe('ShowToolController', () => {
-  test('Chama next() se não houver tag', async () => {
-    const { sut, next } = makeSut()
+  test('Retorna 400 se não houver tag', async () => {
+    const { sut } = makeSut()
     const httpRequest = {
       query: {}
     }
-    await sut.handle(httpRequest)
-    expect(next.set).toEqual(1)
+    const response = await sut.handle(httpRequest)
+    expect(response.statusCode).toEqual(400)
+    expect(response.body.message).toEqual(new MissingParamsError('tag'))
   })
   test('Chama o ShowToolRepository com o param correto', async () => {
     const { sut, showToolRepositorySpy } = makeSut()
