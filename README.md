@@ -13,14 +13,17 @@ Para executar o projeto, será necessário instalar os seguintes programas:
 
 - [Node.js, necessário para execução do projeto](https://nodejs.org/en/)
 - [Yarn, para gerenciar pacotes de instalação](https://classic.yarnpkg.com/pt-BR/docs/install/#windows-stable)
+- [Docker, para rodar a aplicação em um container](https://docs.docker.com/compose/install/)(opcional)
 
 ## Executando
 
-Para iniciar o desenvolvimento, é necessário clonar o projeto
+Para iniciar a execução, é necessário clonar o projeto
 
 ```sh
 git clone https://github.com/Pedroh1510/Cadastro-Ferramentas.git
 ```
+
+### Local
 
 Para instalar as dependências
 
@@ -34,6 +37,12 @@ Rodando o projeto no modo de produção
 
 ```sh
 yarn start
+```
+
+### Com Docker
+
+```sh
+yarn up
 ```
 
 Agora acesse [localhost:3333](localhost:3333), recomendo que utilize o insomnia para acessar as rotas desta aplicação
