@@ -1,2 +1,2 @@
-GET http://localhost:3000/tools?tag=
+GET http://localhost:3333/tools?tag=
 # necessario completar pela tag a ser pesquisada
