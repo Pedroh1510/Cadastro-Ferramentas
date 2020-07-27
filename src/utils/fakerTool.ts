@@ -5,7 +5,7 @@ export const fakerTool = ():ITool => ({
   title: faker.random.words(5),
   link: faker.internet.url(),
   description: faker.random.words(20),
-  tags: faker.random.words(20).split(' ')
+  tags: faker.random.words(5).split(' ')
 })
 
 export const fakerLoadTools = ():ILoadTool => ({
@@ -13,5 +13,5 @@ export const fakerLoadTools = ():ILoadTool => ({
   title: faker.random.words(5),
   link: faker.internet.url(),
   description: faker.random.words(20),
-  tags: faker.random.words(20).split(' ')
+  tags: faker.random.words(5).split(' ')
 })

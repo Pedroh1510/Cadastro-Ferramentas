@@ -10,6 +10,6 @@ export class TagsEntity {
     @Column()
     name:string;
 
-    @ManyToOne(type => ToolsEntity, tool => tool.tags)
+    @ManyToOne(() => ToolsEntity, toolEntity => toolEntity.tags, { cascade: true })
     tool: ToolsEntity
 }

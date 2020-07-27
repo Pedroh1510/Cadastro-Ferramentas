@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinTable } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 
-import { TagsEntity } from './tagsEntity'
+import { TagsEntity } from './TagsEntity'
 
 @Entity()
 export class ToolsEntity {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id?: string;
 
     @Column()
     title: string;
@@ -16,6 +16,6 @@ export class ToolsEntity {
     @Column()
     link: string;
 
-    @OneToMany(type => TagsEntity, tag => tag.tool)
+    @OneToMany(() => TagsEntity, tagsEntity => tagsEntity.tool)
     tags:TagsEntity[]
 }

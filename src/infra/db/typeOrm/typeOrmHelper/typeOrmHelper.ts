@@ -15,7 +15,8 @@ class TypeOrmHelper {
       port: 5432,
       username: process.env.DB_USERNAME || 'POSTGRES_USER',
       password: process.env.DB_PASSWORD || 'POSTGRES_PASSWORD',
-      entities: [ToolsEntity, TagsEntity]
+      entities: [ToolsEntity, TagsEntity],
+      synchronize: true
     })
     this.isConnected = this.client.isConnected
   }
@@ -30,8 +31,9 @@ class TypeOrmHelper {
     return await this.client.getRepository(ToolsEntity).find()
   }
 
-  async add (data:any) {
-    await this.client.manager.save(data)
+  async add (data) {
+    const result = await this.client.manager.save(data)
+    return result
   }
 }
 
