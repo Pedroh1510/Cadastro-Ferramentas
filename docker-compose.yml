@@ -27,6 +27,9 @@ services:
     command: bash -c "yarn --only=prod && yarn debug"
     environment:
       - MONGO_URL=mongodb://mongo:27017/cadastro-ferramentas
+      - DB_HOST=localhost
+      - DB_USERNAME=POSTGRES_USER
+      - DB_PASSWORD=POSTGRES_PASSWORD
     volumes:
       - ./dist/:/usr/src/cadastro-ferramentas/dist/
       - ./package.json:/usr/src/cadastro-ferramentas/package.json

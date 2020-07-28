@@ -1,7 +1,7 @@
 import { Controller } from '@/controllers/protocols/controller'
 
 import { StoreToolController } from './../../../../controllers/tool/StoreToolController'
-import { ToolRepository } from './../../../../infra/db/mongodb/ToolRepository'
+import { ToolRepository } from './../../../../infra/db/typeOrm/ToolRepository'
 
 export const makeStoreToolController = ():Controller => {
   const repository = new ToolRepository()

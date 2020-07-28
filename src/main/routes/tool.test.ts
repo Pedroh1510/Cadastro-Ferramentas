@@ -1,29 +1,26 @@
-import { Collection } from 'mongodb'
 import request from 'supertest'
 
-import { mongoHelper } from '../../infra/db/mongodb/mongoHelper/mongoHelper'
+import { ToolRepository } from '../../infra/db/typeOrm/ToolRepository'
+import { typeOrmHelper } from '../../infra/db/typeOrm/typeOrmHelper/typeOrmHelper'
 import { fakerTool } from '../../utils/fakerTool'
 import app from '../config/app'
 import env from '../config/env'
-import { ToolRepository } from './../../infra/db/mongodb/ToolRepository'
-
-let toolCollection: Collection
 
 describe('Tool Route', () => {
   beforeAll(async () => {
-    await mongoHelper.connect(env.mongoUrl)
+    await typeOrmHelper.connect()
   })
   afterAll(async () => {
-    await mongoHelper.disconnect()
+    await typeOrmHelper.disconnect()
   })
   beforeEach(async () => {
-    toolCollection = await mongoHelper.getCollection('tool')
-    await toolCollection.deleteMany({})
+    await typeOrmHelper.clear()
   })
   describe('GET /tools', () => {
     test('Retorna 200 e a lista de tools', async () => {
       const tool = fakerTool()
-      await toolCollection.insertOne(tool)
+      const repository = new ToolRepository()
+      await repository.add(tool)
       const response = await request(app)
         .get('/tools')
       expect(response.status).toEqual(200)
@@ -36,9 +33,9 @@ describe('Tool Route', () => {
   })
   describe('GET /tools?tag=', () => {
     test('Retorna 200 e a lista de tools com a tag', async () => {
-      const
-        tool = fakerTool()
-      await toolCollection.insertOne(tool)
+      const tool = fakerTool()
+      const repository = new ToolRepository()
+      await repository.add(tool)
       const response = await request(app)
         .get(`/tools?tag=${tool.tags[0]}`)
       expect(response.status).toEqual(200)
