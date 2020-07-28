@@ -1,29 +1,27 @@
-import { Collection } from 'mongodb'
 import request from 'supertest'
 
-import { mongoHelper } from '../../infra/db/mongodb/mongoHelper/mongoHelper'
+import { ToolRepository } from '../../infra/db/typeOrm/ToolRepository'
+import { typeOrmHelper } from '../../infra/db/typeOrm/typeOrmHelper/typeOrmHelper'
 import { fakerTool } from '../../utils/fakerTool'
 import app from '../config/app'
-import env from '../config/env'
-import { ToolRepository } from './../../infra/db/mongodb/ToolRepository'
-
-let toolCollection: Collection
+import { configConnection } from './../../infra/db/typeOrm/mock/config'
+import { makeConfigConnection } from './../factories/db/connection'
 
 describe('Tool Route', () => {
   beforeAll(async () => {
-    await mongoHelper.connect(env.mongoUrl)
+    await typeOrmHelper.connect(makeConfigConnection(configConnection))
   })
   afterAll(async () => {
-    await mongoHelper.disconnect()
+    await typeOrmHelper.disconnect()
   })
   beforeEach(async () => {
-    toolCollection = await mongoHelper.getCollection('tool')
-    await toolCollection.deleteMany({})
+    await typeOrmHelper.clear()
   })
   describe('GET /tools', () => {
     test('Retorna 200 e a lista de tools', async () => {
       const tool = fakerTool()
-      await toolCollection.insertOne(tool)
+      const repository = new ToolRepository()
+      await repository.add(tool)
       const response = await request(app)
         .get('/tools')
       expect(response.status).toEqual(200)
@@ -31,14 +29,14 @@ describe('Tool Route', () => {
       expect(response.body[0].title).toEqual(tool.title)
       expect(response.body[0].description).toEqual(tool.description)
       expect(response.body[0].link).toEqual(tool.link)
-      expect(response.body[0].tags).toEqual(tool.tags)
+      expect(response.body[0].tags).toEqual(expect.arrayContaining(tool.tags))
     })
   })
   describe('GET /tools?tag=', () => {
     test('Retorna 200 e a lista de tools com a tag', async () => {
-      const
-        tool = fakerTool()
-      await toolCollection.insertOne(tool)
+      const tool = fakerTool()
+      const repository = new ToolRepository()
+      await repository.add(tool)
       const response = await request(app)
         .get(`/tools?tag=${tool.tags[0]}`)
       expect(response.status).toEqual(200)
@@ -46,7 +44,7 @@ describe('Tool Route', () => {
       expect(response.body[0].title).toEqual(tool.title)
       expect(response.body[0].description).toEqual(tool.description)
       expect(response.body[0].link).toEqual(tool.link)
-      expect(response.body[0].tags).toEqual(tool.tags)
+      expect(response.body[0].tags).toEqual(expect.arrayContaining(tool.tags))
       expect(response.body.length).toEqual(1)
     })
   })
