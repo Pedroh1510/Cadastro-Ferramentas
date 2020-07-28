@@ -1,3 +1,4 @@
+import { IDestroyToolRepository } from '@/controllers/protocols/IDestroyToolRepository'
 import { IIndexToolRepository } from '@/controllers/protocols/IIndexRepository'
 import { IShowToolRepository } from '@/controllers/protocols/IShowToolRepository'
 import { IStoreToolRepository } from '@/controllers/protocols/IStoreRepository'
@@ -22,7 +23,8 @@ const refactorToolsEntityInTool = (toolsEntity:ToolsEntity[]) => {
 export class ToolRepository implements
   IStoreToolRepository,
   IIndexToolRepository,
-  IShowToolRepository {
+  IShowToolRepository,
+  IDestroyToolRepository {
   async add (tool:ITool):Promise<ILoadTool> {
     const tags = tool.tags.map(async tag => {
       const tagEntity = new TagsEntity()
@@ -76,5 +78,12 @@ export class ToolRepository implements
     const tools = refactorToolsEntityInTool(toolsEntity)
 
     return tools
+  }
+
+  async drop (id:string):Promise<void> {
+    const connection = await typeOrmHelper.connection()
+    const entity = connection.getRepository(ToolsEntity)
+    const tool = await entity.findOne(id)
+    await entity.remove(tool)
   }
 }

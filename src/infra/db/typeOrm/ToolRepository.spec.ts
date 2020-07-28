@@ -58,4 +58,15 @@ describe('Tool Repository typeOrm', () => {
       expect(response[0].tags).toEqual(tool.tags)
     })
   })
+  describe('DestroyTool', () => {
+    test('Deleta a Tool com o fornecido id', async () => {
+      const { sut } = makeSut()
+      const tool = fakerTool()
+      const { id } = await sut.add(tool)
+      await sut.drop(id)
+
+      const response = await sut.get()
+      expect(response).toEqual([])
+    })
+  })
 })
