@@ -4,11 +4,12 @@ import { ToolRepository } from '../../infra/db/typeOrm/ToolRepository'
 import { typeOrmHelper } from '../../infra/db/typeOrm/typeOrmHelper/typeOrmHelper'
 import { fakerTool } from '../../utils/fakerTool'
 import app from '../config/app'
-import env from '../config/env'
+import { configConnection } from './../../infra/db/typeOrm/mock/config'
+import { makeConfigConnection } from './../factories/db/connection'
 
 describe('Tool Route', () => {
   beforeAll(async () => {
-    await typeOrmHelper.connect()
+    await typeOrmHelper.connect(makeConfigConnection(configConnection))
   })
   afterAll(async () => {
     await typeOrmHelper.disconnect()
@@ -28,7 +29,7 @@ describe('Tool Route', () => {
       expect(response.body[0].title).toEqual(tool.title)
       expect(response.body[0].description).toEqual(tool.description)
       expect(response.body[0].link).toEqual(tool.link)
-      expect(response.body[0].tags).toEqual(tool.tags)
+      expect(response.body[0].tags).toEqual(expect.arrayContaining(tool.tags))
     })
   })
   describe('GET /tools?tag=', () => {
@@ -43,7 +44,7 @@ describe('Tool Route', () => {
       expect(response.body[0].title).toEqual(tool.title)
       expect(response.body[0].description).toEqual(tool.description)
       expect(response.body[0].link).toEqual(tool.link)
-      expect(response.body[0].tags).toEqual(tool.tags)
+      expect(response.body[0].tags).toEqual(expect.arrayContaining(tool.tags))
       expect(response.body.length).toEqual(1)
     })
   })

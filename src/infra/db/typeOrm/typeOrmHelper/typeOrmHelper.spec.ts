@@ -1,8 +1,9 @@
+import { configConnection } from './../mock/config'
 import { typeOrmHelper } from './typeOrmHelper'
 
 describe('Type Orm Helper', () => {
   beforeAll(async () => {
-    await typeOrmHelper.connect()
+    await typeOrmHelper.connect(configConnection)
   })
   afterAll(async () => {
     await typeOrmHelper.disconnect()

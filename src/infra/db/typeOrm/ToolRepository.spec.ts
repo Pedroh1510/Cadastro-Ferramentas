@@ -1,6 +1,6 @@
 import { fakerTool } from './../../../utils/fakerTool'
+import { configConnection } from './mock/config'
 import { ToolRepository } from './ToolRepository'
-import { ToolsEntity } from './typeOrmHelper/entity/ToolsEntity'
 import { typeOrmHelper } from './typeOrmHelper/typeOrmHelper'
 
 const makeSut = () => {
@@ -12,7 +12,7 @@ const makeSut = () => {
 
 describe('Tool Repository typeOrm', () => {
   beforeAll(async () => {
-    await typeOrmHelper.connect()
+    await typeOrmHelper.connect(configConnection)
   })
   afterAll(async () => {
     await typeOrmHelper.disconnect()
@@ -42,7 +42,7 @@ describe('Tool Repository typeOrm', () => {
       expect(response[0].title).toEqual(tool.title)
       expect(response[0].description).toEqual(tool.description)
       expect(response[0].link).toEqual(tool.link)
-      expect(response[0].tags).toEqual(tool.tags)
+      expect(response[0].tags).toEqual(expect.arrayContaining(tool.tags))
     })
   })
   describe('ShowTool', () => {
@@ -55,7 +55,7 @@ describe('Tool Repository typeOrm', () => {
       expect(response[0].title).toEqual(tool.title)
       expect(response[0].description).toEqual(tool.description)
       expect(response[0].link).toEqual(tool.link)
-      expect(response[0].tags).toEqual(tool.tags)
+      expect(response[0].tags).toEqual(expect.arrayContaining(tool.tags))
     })
   })
   describe('DestroyTool', () => {

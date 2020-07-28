@@ -1,6 +1,5 @@
-import { createConnection, Connection, getConnection } from 'typeorm'
+import { createConnection, Connection, getConnection, ConnectionOptions } from 'typeorm'
 
-import { TagsEntity } from './entity/TagsEntity'
 import { ToolsEntity } from './entity/ToolsEntity'
 
 class TypeOrmHelper {
@@ -8,17 +7,8 @@ class TypeOrmHelper {
   private table: string
   isConnected: boolean
 
-  async connect () {
-    this.client = await createConnection({
-      type: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
-      port: 5432,
-      username: process.env.DB_USERNAME || 'POSTGRES_USER',
-      password: process.env.DB_PASSWORD || 'POSTGRES_PASSWORD',
-      entities: [ToolsEntity, TagsEntity],
-      synchronize: true,
-      dropSchema: true
-    })
+  async connect (options:ConnectionOptions) {
+    this.client = await createConnection(options)
     this.isConnected = this.client.isConnected
   }
 
@@ -39,10 +29,6 @@ class TypeOrmHelper {
 
   async disconnect () {
     this.client.close()
-  }
-
-  async get () {
-    return await this.client.getRepository(ToolsEntity).find()
   }
 
   async add (data) {
