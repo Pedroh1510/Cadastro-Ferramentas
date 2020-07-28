@@ -16,9 +16,24 @@ class TypeOrmHelper {
       username: process.env.DB_USERNAME || 'POSTGRES_USER',
       password: process.env.DB_PASSWORD || 'POSTGRES_PASSWORD',
       entities: [ToolsEntity, TagsEntity],
-      synchronize: true
+      synchronize: true,
+      dropSchema: true
     })
     this.isConnected = this.client.isConnected
+  }
+
+  async connection () {
+    return this.client
+  }
+
+  async clear () {
+    const connection = this.client
+    const entities = connection.entityMetadatas
+
+    entities.forEach(async (entity) => {
+      const repository = connection.getRepository(entity.name)
+      await repository.query(`DELETE FROM ${entity.tableName}`)
+    })
   }
 
   async disconnect () {

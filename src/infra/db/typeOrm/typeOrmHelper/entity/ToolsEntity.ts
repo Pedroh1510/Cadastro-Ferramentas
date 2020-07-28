@@ -5,7 +5,7 @@ import { TagsEntity } from './TagsEntity'
 @Entity()
 export class ToolsEntity {
     @PrimaryGeneratedColumn('uuid')
-    id?: string;
+    id: string;
 
     @Column()
     title: string;
@@ -16,6 +16,6 @@ export class ToolsEntity {
     @Column()
     link: string;
 
-    @OneToMany(() => TagsEntity, tagsEntity => tagsEntity.tool)
+    @OneToMany(() => TagsEntity, tagsEntity => tagsEntity.tool, { cascade: true })
     tags:TagsEntity[]
 }
