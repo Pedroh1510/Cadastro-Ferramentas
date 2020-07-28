@@ -7,6 +7,18 @@ import { TagsEntity } from './typeOrmHelper/entity/TagsEntity'
 import { ToolsEntity } from './typeOrmHelper/entity/ToolsEntity'
 import { typeOrmHelper } from './typeOrmHelper/typeOrmHelper'
 
+const refactorToolsEntityInTool = (toolsEntity:ToolsEntity[]) => {
+  const tools = toolsEntity.map(toolEntity => {
+    const { id, title, description, link } = toolEntity
+    const tags = toolEntity.tags.map(tag => tag.name)
+
+    return {
+      id, title, description, link, tags
+    }
+  })
+  return tools
+}
+
 export class ToolRepository implements
   IStoreToolRepository,
   IIndexToolRepository,
@@ -40,14 +52,8 @@ export class ToolRepository implements
       .leftJoinAndSelect('tools_entity.tags', 'tags_entity')
       .getMany()
 
-    const tools = toolsEntity.map(toolEntity => {
-      const { id, title, description, link } = toolEntity
-      const tags = toolEntity.tags.map(tag => tag.name)
+    const tools = refactorToolsEntityInTool(toolsEntity)
 
-      return {
-        id, title, description, link, tags
-      }
-    })
     return tools
   }
 
@@ -67,14 +73,7 @@ export class ToolRepository implements
       .whereInIds(idsToolsEntity)
       .getMany()
 
-    const tools = toolsEntity.map(toolEntity => {
-      const { id, title, description, link } = toolEntity
-      const tags = toolEntity.tags.map(tag => tag.name)
-
-      return {
-        id, title, description, link, tags
-      }
-    })
+    const tools = refactorToolsEntityInTool(toolsEntity)
 
     return tools
   }
