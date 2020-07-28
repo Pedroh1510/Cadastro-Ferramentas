@@ -45,4 +45,17 @@ describe('Tool Repository typeOrm', () => {
       expect(response[0].tags).toEqual(tool.tags)
     })
   })
+  describe('ShowTool', () => {
+    test('Retornas uma lista de tools com a tag fornecida', async () => {
+      const { sut } = makeSut()
+      const tool = fakerTool()
+      await sut.add(tool)
+      const response = await sut.filter(tool.tags[0])
+      expect(Array.isArray(response)).toBeTruthy()
+      expect(response[0].title).toEqual(tool.title)
+      expect(response[0].description).toEqual(tool.description)
+      expect(response[0].link).toEqual(tool.link)
+      expect(response[0].tags).toEqual(tool.tags)
+    })
+  })
 })

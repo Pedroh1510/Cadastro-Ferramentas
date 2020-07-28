@@ -1,4 +1,4 @@
-import { createConnection, Connection } from 'typeorm'
+import { createConnection, Connection, getConnection } from 'typeorm'
 
 import { TagsEntity } from './entity/TagsEntity'
 import { ToolsEntity } from './entity/ToolsEntity'
@@ -23,11 +23,12 @@ class TypeOrmHelper {
   }
 
   async connection () {
+    this.client = await getConnection()
     return this.client
   }
 
   async clear () {
-    const connection = this.client
+    const connection = await getConnection()
     const entities = connection.entityMetadatas
 
     entities.forEach(async (entity) => {
@@ -38,8 +39,6 @@ class TypeOrmHelper {
 
   async disconnect () {
     this.client.close()
-    this.client = null
-    this.isConnected = null
   }
 
   async get () {

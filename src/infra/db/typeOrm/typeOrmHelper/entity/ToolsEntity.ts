@@ -16,6 +16,6 @@ export class ToolsEntity {
     @Column()
     link: string;
 
-    @OneToMany(() => TagsEntity, tagsEntity => tagsEntity.tool, { cascade: true })
+    @OneToMany(() => TagsEntity, tagsEntity => tagsEntity.tool)
     tags:TagsEntity[]
 }
